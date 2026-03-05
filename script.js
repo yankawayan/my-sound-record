@@ -31,6 +31,8 @@ startBtn.addEventListener("click", async () => {
   } 
 
   mediaRecorder.onstop = () => {
+    console.log(audioChunks);
+
     //const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
     const audioBlob = new Blob(audioChunks, { type: "audio/webm;codecs=opus" });
     const audioUrl = URL.createObjectURL(audioBlob);
