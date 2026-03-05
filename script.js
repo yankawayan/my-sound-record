@@ -40,7 +40,13 @@ startBtn.addEventListener("click", async () => {
     renderRecording(audioUrl);
   };
 
-  mediaRecorder.start();
+  mediaRecorder.ondataavailable = (event) => {
+    if (event.data.size > 0) { 
+      audioChunks.push(event.data);
+    }
+  };
+
+  mediaRecorder.start(1000); // 1秒ごとにデータをavailableイベントで取得
 
   startBtn.disabled = true;
   stopBtn.disabled = false;
